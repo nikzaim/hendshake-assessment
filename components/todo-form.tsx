@@ -71,7 +71,7 @@ export function TodoForm() {
   return (
     <div className="space-y-8">
       <h2 className="text-2xl font-bold flex items-center gap-2">
-        <ClipboardText size={36} color="#1423f0" weight="duotone" />
+        <ClipboardText size={36} color="#3b82f6" weight="duotone" />
         Add a New Task
       </h2>
 
@@ -151,6 +151,7 @@ export function TodoForm() {
               <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                 <FormControl>
                   <Checkbox
+                    className="data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
@@ -185,7 +186,10 @@ export function TodoForm() {
             )}
           />
 
-          <Button type="submit" className="w-full cursor-pointer">
+          <Button
+            type="submit"
+            className="bg-blue-500 w-full cursor-pointer hover:bg-blue-400"
+          >
             Add Task
           </Button>
         </form>
