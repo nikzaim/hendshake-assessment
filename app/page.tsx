@@ -1,4 +1,3 @@
-// app/page.tsx
 import { TodoForm } from '@/components/todo-form';
 import { TodoList } from '@/components/todo-list';
 
