@@ -180,7 +180,7 @@ export function TodoForm() {
                   />
                 </FormControl>
                 <FormDescription>
-                  From 0.0 (most accessible) to 1.0 (least accessible)
+                  From 0.0 (least accessible) to 1.0 (most accessible)
                 </FormDescription>
               </FormItem>
             )}
