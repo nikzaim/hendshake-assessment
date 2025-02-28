@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useTodoStore, TodoItem } from '@/lib/store';
+import { Trash2 } from 'lucide-react';
 
 export function TodoList() {
   // Get todos and removeTodo from the store
@@ -65,8 +66,9 @@ function TodoCard({
             variant="destructive" 
             size="sm" 
             onClick={onDelete}
-            className="ml-2"
+            className="ml-2 cursor-pointer"
           >
+            <Trash2 />
             Delete
           </Button>
         </div>
@@ -74,7 +76,7 @@ function TodoCard({
       <CardContent>
         <div className="grid grid-cols-2 gap-2 text-sm">
           <div>
-            <span className="font-medium">Price:</span> ${todo.price.toFixed(2)}
+            <span className="font-medium">Price:</span> RM {todo.price.toFixed(2)}
           </div>
           <div>
             <span className="font-medium">Type:</span> {formatType(todo.type)}

@@ -1,21 +1,47 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Slider } from '@/components/ui/slider';
-import { useTodoStore } from '@/lib/store';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Slider } from "@/components/ui/slider";
+import { useTodoStore } from "@/lib/store";
+import { ClipboardText } from "@phosphor-icons/react";
 
 // Form validation schema using zod
 const formSchema = z.object({
-  activity: z.string().min(1, { message: 'Activity is required' }),
-  price: z.coerce.number().min(0, { message: 'Price must be a positive number' }),
-  type: z.enum(['education', 'recreational', 'social', 'diy', 'charity', 'cooking', 'relaxation', 'music', 'busywork']),
+  activity: z.string().min(1, { message: "Activity is required" }),
+  price: z.coerce
+    .number()
+    .min(0, { message: "Price must be a positive number" }),
+  type: z.enum([
+    "education",
+    "recreational",
+    "social",
+    "diy",
+    "charity",
+    "cooking",
+    "relaxation",
+    "music",
+    "busywork",
+  ]),
   bookingRequired: z.boolean().default(false),
   accessibility: z.number().min(0).max(1),
 });
@@ -25,9 +51,9 @@ export function TodoForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      activity: '',
+      activity: "",
       price: 0,
-      type: 'education',
+      type: "education",
       bookingRequired: false,
       accessibility: 0.5,
     },
@@ -44,8 +70,11 @@ export function TodoForm() {
 
   return (
     <div className="space-y-8">
-      <h2 className="text-2xl font-bold">Add a New Task</h2>
-      
+      <h2 className="text-2xl font-bold flex items-center gap-2">
+        <ClipboardText size={36} color="#1423f0" weight="duotone" />
+        Add a New Task
+      </h2>
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Activity Field */}
@@ -61,7 +90,7 @@ export function TodoForm() {
               </FormItem>
             )}
           />
-          
+
           {/* Price Field */}
           <FormField
             control={form.control}
@@ -70,18 +99,18 @@ export function TodoForm() {
               <FormItem>
                 <FormLabel>Price</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="number" 
-                    min="0" 
-                    step="0.01" 
-                    placeholder="0.00" 
-                    {...field} 
+                  <Input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                    {...field}
                   />
                 </FormControl>
               </FormItem>
             )}
           />
-          
+
           {/* Type Field */}
           <FormField
             control={form.control}
@@ -89,8 +118,8 @@ export function TodoForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Type</FormLabel>
-                <Select 
-                  onValueChange={field.onChange} 
+                <Select
+                  onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
@@ -113,7 +142,7 @@ export function TodoForm() {
               </FormItem>
             )}
           />
-          
+
           {/* Booking Required Field */}
           <FormField
             control={form.control}
@@ -132,7 +161,7 @@ export function TodoForm() {
               </FormItem>
             )}
           />
-          
+
           {/* Accessibility Field */}
           <FormField
             control={form.control}
@@ -155,8 +184,10 @@ export function TodoForm() {
               </FormItem>
             )}
           />
-          
-          <Button type="submit" className="w-full">Add Task</Button>
+
+          <Button type="submit" className="w-full cursor-pointer">
+            Add Task
+          </Button>
         </form>
       </Form>
     </div>
